@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026 愛神特會 REBORN - 活出最好版本的自己</title>
+    <!-- 載入 Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* 使用 Inter 字體作為基底，確保視覺現代感 */
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+        /* 定義主色調：深灰背景、亮紅強調 */
+        .reborn-text {
+            /* 模擬圖片中 "REBORN" 的厚重感 */
+            font-size: clamp(3rem, 10vw, 7rem);
+            line-height: 1;
+            font-weight: 900;
+            color: #d12a2a; /* 亮紅色 */
+            text-shadow: 4px 4px 0px #000000;
+        }
+        .reborn-bg {
+            background-color: #1a1a1a; /* 極深灰色背景 */
+        }
+        .reborn-accent {
+            background-color: #d12a2a; /* 亮紅按鈕/強調色 */
+        }
+        .reborn-border {
+            border-color: #d12a2a;
+        }
+        .text-fire {
+            color: #d12a2a;
+        }
+    </style>
+</head>
+<body class="reborn-bg text-white min-h-screen p-4 sm:p-8">
+
+    <!-- 頂部標題區 -->
+    <header class="text-center mb-12 pt-8">
+        <h1 class="text-xl sm:text-2xl font-bold mb-2 text-gray-400 tracking-wider">
+            — 2026 愛神特會 —
+        </h1>
+        <div class="reborn-text">REBORN</div>
+        <p class="text-xl sm:text-3xl font-black mt-4 px-4 py-2 inline-block bg-gray-800 rounded-lg shadow-xl">
+            <strong>“ 活出最好版本的自己 🔥”</strong>
+        </p>
+        
+        <!-- 放大特會日期並置於最顯眼處 (已調整時間細節，並精簡排版) -->
+        <div class="mt-8 mb-8 p-4 bg-red-800/80 rounded-xl shadow-xl inline-block transform scale-105">
+            <p class="text-2xl sm:text-4xl font-black text-white tracking-widest mb-3">
+                <strong>2026.02.02 (一) — 02.04 (三)</strong>
+            </p>
+            
+            <!-- 精簡的兩行時間資訊，使用 flex 佈局 -->
+            <div class="flex flex-col sm:flex-row justify-center sm:space-x-6 space-y-2 sm:space-y-0 text-sm sm:text-lg font-bold">
+                <!-- 2/2 & 2/3 (一般場次) -->
+                <div class="bg-gray-900/50 rounded-md p-1 px-3">
+                    <span class="text-yellow-300 mr-2">DAY 1 & 2:</span>
+                    <strong class="text-white">18:00 - 21:00</strong>
+                </div>
+                <!-- 2/4 (最終晚/市集場) -->
+                <div class="bg-yellow-800/50 rounded-md p-1 px-3 mt-2 sm:mt-0">
+                    <span class="text-red-300 mr-2">DAY 3 (FINAL):</span>
+                    <strong class="text-white">17:00 - 21:00</strong> (市集 17:00 開跑)
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 介紹與反思區 -->
+    <section class="max-w-4xl mx-auto mb-16 p-6 bg-gray-800/70 rounded-xl shadow-2xl border reborn-border border-opacity-30">
+        <h2 class="text-2xl sm:text-3xl font-bold mb-4 text-fire">
+            ⚡️ 寒假 Me Time 到了！心靈大掃除時間！
+        </h2>
+        <p class="text-gray-300 text-lg mb-6">
+            「休息是為了走更長遠的路！」除了身體需要休息，心靈一定也需要整理一下🙌。
+        </p>
+        <div class="space-y-3">
+            <p class="font-semibold text-white">🤯 你是不是也這樣想過：</p>
+            <ul class="list-disc list-inside space-y-2 ml-4 text-gray-300">
+                <li>我到底是誰？我想成為什麼樣的人？</li>
+                <li>我那麼努力是為了什麼？</li>
+                <li>我是不是可以不用再被世界的期待壓著走？</li>
+                <li>人生是否還有其他的可能？</li>
+            </ul>
+        </div>
+
+        <p class="mt-6 text-lg font-bold text-yellow-300">
+            👉 今年寒假，讓我們找回神創造的自己，重新啟動生命！
+        </p>
+        <p class="text-gray-300 mt-2">
+            你將會發現——不是別人口中的你、不是成績定義的你、也不是比較帶來的那個你，
+            而是最初神創造時，那個<strong class="text-yellow-300">很酷、很有價值、充滿自信的你。</strong>
+        </p>
+    </section>
+
+    <!-- 所有的活動形式與選項：互動式卡片區 (已重構，將三天活動選項放在一起) -->
+    <section class="max-w-5xl mx-auto mb-16" id="format-container">
+        <h2 class="text-center text-3xl sm:text-4xl font-black mb-4 text-fire">
+            ✨ REBORN 完整三天活動選項 ✨
+        </h2>
+        <p class="text-center text-xl font-bold text-gray-300 mb-8">
+            從暖心到超炸，總有一個適合你！
+        </p>
+
+        <!-- 第一/二晚 (2/2 & 2/3)：兩晚擇一區 -->
+        <h3 class="text-xl sm:text-2xl font-black mb-4 text-yellow-400 border-b border-gray-700 pb-2">
+            <strong>❶ 2/2 (一) & 2/3 (二) 晚間 | 18:00 - 21:00</strong> (兩晚任選一 Chill)
+        </h3>
+        
+        <div class="grid md:grid-cols-2 gap-6 mb-10">
+            <!-- 形式卡片 1: 音樂晚會場 -->
+            <div class="format-card bg-gray-700/80 p-6 rounded-xl shadow-xl hover:shadow-red-500/50 transition duration-300 cursor-pointer border-4 border-transparent hover:border-red-500" data-format="music">
+                <h3 class="text-2xl font-black mb-3 flex items-center text-yellow-300">
+                    <span class="text-3xl mr-3">🎵</span> <strong>音樂晚會場</strong>
+                </h3>
+                <p class="text-lg font-semibold text-gray-300 mb-4">對象：喜歡音樂、大場面，想更深認識信仰的你</p>
+                <div class="description-content" data-format-detail="music">
+                    <p class="text-white font-bold mb-2">在這裡你可以狠狠充電一場！</p>
+                    <ul class="list-disc list-inside ml-4 text-gray-300 space-y-1">
+                        <li>🎵 音樂饗宴Ｘ激勵信息</li>
+                        <li>🙏 祝福禱告</li>
+                        <li>絕對跟你想得完全不一樣！包準難忘！</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 形式卡片 2: 暖心專場 -->
+            <div class="format-card bg-gray-700/80 p-6 rounded-xl shadow-xl hover:shadow-red-500/50 transition duration-300 cursor-pointer border-4 border-transparent hover:border-red-500" data-format="warmheart">
+                <h3 class="text-2xl font-black mb-3 flex items-center text-yellow-300">
+                    <span class="text-3xl mr-3">☕</span> <strong>暖心專場</strong>
+                </h3>
+                <p class="text-lg font-semibold text-gray-300 mb-4">對象：想要走暖心溫馨的路線，跟人聊聊天的你</p>
+                <div class="description-content" data-format-detail="newbie">
+                    <p class="text-white font-bold mb-2">在這裡你可以很輕鬆自在、沒有壓力！</p>
+                    <ul class="list-disc list-inside ml-4 text-gray-300 space-y-1">
+                        <li>🍕 食物饗宴 (有東西吃超重要！)</li>
+                        <li>🗣️ 信仰對話 (輕鬆聊聊生命的意義)</li>
+                        <li>🙏 祝福禱告</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 第三晚 (2/4)：兩個連動活動區 -->
+        <h3 class="text-xl sm:text-2xl font-black mb-4 text-red-400 border-b border-gray-700 pb-2">
+            <strong>❷ 2/4 (三) 最終晚 | 17:00 - 21:00</strong> (市集 + 晚會，不容錯過！)
+        </h3>
+        
+        <div class="grid md:grid-cols-2 gap-6">
+            <!-- 形式卡片 3: 解憂市集 -->
+            <div class="format-card bg-gray-700/80 p-6 rounded-xl shadow-xl hover:shadow-yellow-500/50 transition duration-300 cursor-pointer border-4 border-transparent hover:border-yellow-500" data-format="market">
+                <h3 class="text-2xl font-black mb-3 flex items-center text-yellow-300">
+                    <span class="text-3xl mr-3">🛍️</span> <strong>解憂市集</strong> <strong class="text-sm ml-2">(17:00 - 18:30)</strong>
+                </h3>
+                <p class="text-lg font-semibold text-gray-300 mb-4">對象：想要吃吃喝喝，談談聊聊，接受祝福的你</p>
+                <div class="description-content" data-format-detail="market">
+                    <p class="text-white font-bold mb-2">在這裡你可以放鬆chill一下：</p>
+                    <ul class="list-disc list-inside ml-4 text-gray-300 space-y-1">
+                        <li>露營風談心桌 ⛺</li>
+                        <li>暖心bar ☕</li>
+                        <li>專屬祝福站 ✨</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 形式卡片 4: 超炸晚會 -->
+            <div class="format-card bg-gray-700/80 p-6 rounded-xl shadow-xl hover:shadow-red-500/50 transition duration-300 cursor-pointer border-4 border-transparent hover:border-red-500" data-format="superboom">
+                <h3 class="text-2xl font-black mb-3 flex items-center text-yellow-300">
+                    <span class="text-3xl mr-3">💥</span> <strong>超炸晚會</strong> <strong class="text-sm ml-2">(18:30 - 21:00)</strong>
+                </h3>
+                <p class="text-lg font-semibold text-gray-300 mb-4">對象：想要大喊大叫紓解壓力的你</p>
+                <div class="description-content" data-format-detail="superboom">
+                    <p class="text-white font-bold mb-2">在這裡你可以完全釋放！</p>
+                    <ul class="list-disc list-inside ml-4 text-gray-300 space-y-1">
+                        <li>超嗨展演 🎸</li>
+                        <li>超沈浸互動 🎉</li>
+                        <li>感人故事 😭</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <p class="text-center mt-10 text-xl font-extrabold text-fire">
+            ✔ 最重要的是——你會發現一個更好版本的自己 #REBORN
+        </p>
+    </section>
+
+    <!-- 報名與費用區 (已修改為單擊直接跳轉最終報名頁) -->
+    <section class="max-w-4xl mx-auto mb-16 p-6 bg-gray-900 rounded-xl shadow-2xl border reborn-border">
+        <h2 class="text-3xl font-black mb-6 text-center text-red-500">
+            🎊 報名啟動！席次倒數中 🎊
+        </h2>
+
+        <!-- 統一價格與倒數區塊 -->
+        <div class="bg-red-900/50 p-6 rounded-xl border-l-8 border-red-500 mb-8 text-center">
+            <p class="text-2xl font-black text-yellow-300 mb-3">
+                🔥 特會統一價：NT$500 / 人 🔥
+            </p>
+            <p class="text-xl font-bold text-white mb-2">
+                最終截止日期：2026.01.18
+            </p>
+            <p class="text-lg text-red-300">
+                距離截止還有：<span id="days-left" class="font-extrabold text-3xl text-yellow-100">--</span>
+            </p>
+        </div>
+
+        <!-- 新增的報名步驟提示區塊 -->
+        <div class="mb-6 p-4 bg-gray-800/80 rounded-lg shadow-inner border border-gray-700">
+            <p class="text-xl font-bold text-yellow-300 mb-3">🚀 快速卡位流程：</p>
+            <ol class="list-decimal list-outside ml-6 space-y-2 text-gray-200 font-medium text-base">
+                <li>點擊下方「我要報名！立即搶位！」按鈕。</li>
+                <li>進入系統後，請點選「訪客登入」 (若為會友，請直接登入)。</li>
+                <li>在系統頁面中，點選上方「兒青」分頁。</li>
+                <li>找到並點選：「2026愛神特會(新朋友專區)」。</li>
+                <li>填寫基本資料後，即**完成卡位！**</li>
+            </ol>
+        </div>
+
+        <!-- 報名連結區塊 (單擊直接跳轉最終報名頁) -->
+        <div class="space-y-4">
+            <button id="visitorBtn" class="block w-full text-center py-5 bg-gradient-to-r from-red-600 to-yellow-500 text-white font-black text-2xl rounded-xl shadow-2xl shadow-red-500/50 hover:from-red-700 hover:to-yellow-600 transition duration-300 transform hover:scale-[1.02]">
+                🤩 我要報名！立即搶位！
+            </button>
+        </div>
+    </section>
+    
+    <!-- 特會資訊區 (位置不變) -->
+    <section class="max-w-4xl mx-auto p-6 bg-gray-800/70 rounded-xl shadow-2xl">
+        <h2 class="text-3xl font-black mb-6 text-center text-fire">
+            📍 特會詳細資訊
+        </h2>
+
+        <div class="grid md:grid-cols-3 gap-6 text-lg">
+            <!-- 時間：此處只保留次要資訊，主要資訊已移至 Header -->
+            <div class="p-4 bg-gray-700 rounded-lg shadow-md">
+                <p class="font-bold text-red-400 mb-1">⏰ 時間 (詳細)</p>
+                <p class="text-white">三天</p>
+                <p class="text-sm text-gray-400">詳見上方活動選項</p>
+            </div>
+            <!-- 地點 -->
+            <div class="p-4 bg-gray-700 rounded-lg shadow-md">
+                <p class="font-bold text-red-400 mb-1">🗺️ 地點</p>
+                <p class="text-white">夏凱納靈糧堂一樓副堂</p>
+                <!-- 已經更新為提供的 Google Maps 連結 -->
+                <a href="https://maps.app.goo.gl/NYN5AHDXC79p75ZK6" target="_blank" class="text-sm text-blue-400 hover:underline">
+                    台北市中山區植福路170號 (點擊導航)
+                </a>
+            </div>
+            <!-- 交通 -->
+            <div class="p-4 bg-gray-700 rounded-lg shadow-md">
+                <p class="font-bold text-red-400 mb-1">🚆 交通</p>
+                <p class="text-white">劍南路捷運站 3 號出口</p>
+                <p class="text-sm text-gray-400">美麗華旁，走路三分鐘！</p>
+            </div>
+        </div>
+
+        <!-- 聯絡窗口 -->
+        <div class="mt-8 pt-6 border-t border-gray-700">
+            <h3 class="text-2xl font-bold mb-3 text-yellow-300 text-center">
+                📞 有疑問？先問你朋友！
+            </h3>
+            <p class="text-center text-sm text-gray-400 mb-4">
+                若還有疑問，請聯繫以下窗口：
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center space-y-3 sm:space-y-0 sm:space-x-6 text-center">
+                <div class="p-3 bg-gray-700 rounded-lg">
+                    <p class="font-semibold text-white">特會營長｜李永恩</p>
+                    <a href="tel:0952170209" class="text-blue-400 hover:underline">0952170209</a>
+                </div>
+                <div class="p-3 bg-gray-700 rounded-lg">
+                    <p class="font-semibold text-white">特會副營長｜郭奕君</p>
+                    <a href="tel:0983334469" class="text-blue-400 hover:underline">0983334469</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 腳註 -->
+    <footer class="mt-12 text-center text-sm text-gray-500 pb-4">
+        © 2026 夏凱納靈糧堂青年事工 版權所有
+    </footer>
+
+    <script>
+        // ----------------------------------------------------
+        // 1. 報名截止倒數計時功能 (精確到秒的動態倒數)
+        // ----------------------------------------------------
+        let countdownInterval;
+
+        function updateCountdown() {
+            // 設定新的截止時間：2026年1月18日 23:59:59
+            const deadline = new Date('2026-01-18T23:59:59').getTime();
+            const now = new Date().getTime();
+            const distance = deadline - now;
+
+            const daysLeftEl = document.getElementById('days-left');
+
+            // 截止判斷
+            if (distance < 0) {
+                daysLeftEl.innerHTML = '<span class="text-red-500 text-2xl font-black">報名已截止！請聯繫窗口</span>';
+                clearInterval(countdownInterval); // 停止計時器
+                return;
+            }
+
+            // 計算天、時、分、秒
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            // 補零函數
+            const pad = (num) => num.toString().padStart(2, '0');
+
+            // 顯示結果: 00天 00:00:00，並放大數字
+            daysLeftEl.innerHTML = `
+                <span class="text-red-300 text-xl">
+                    <span class="text-fire font-black text-4xl">${pad(days)}</span> 天 
+                    <span class="text-yellow-100 font-black">${pad(hours)}</span>:<span class="text-yellow-100 font-black">${pad(minutes)}</span>:<span class="text-yellow-100 font-black">${pad(seconds)}</span>
+                </span>
+            `;
+        }
+
+        // 初始化倒數計時
+        updateCountdown();
+        // 每秒更新一次
+        countdownInterval = setInterval(updateCountdown, 1000);
+
+        // ----------------------------------------------------
+        // 2. 處理互動式卡片功能
+        // ----------------------------------------------------
+        document.addEventListener('DOMContentLoaded', () => {
+            const formatCards = document.querySelectorAll('.format-card');
+            
+            formatCards.forEach(card => {
+                card.addEventListener('click', (e) => {
+                    const format = card.dataset.format;
+                    console.log(`用戶點擊了: ${format === 'music' ? '音樂晚會場' : '暖心專場'}`);
+
+                    // 點擊時可以滾動到行程表區
+                    document.getElementById('format-container').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                });
+            });
+        });
+
+        // ----------------------------------------------------
+        // 3. 替代 alert() 的自定義函數
+        // ----------------------------------------------------
+        function alert(message) {
+            console.warn("自定義 Alert 訊息:", message);
+            // 由於這是一個宣傳頁，我們只在控制台顯示，不設計複雜模態框。
+        }
+
+        const btn = document.getElementById("visitorBtn");
+
+        // 用 flag 紀錄是否已經按過一次
+        let firstClickDone = false;
+
+        btn.addEventListener("click", function () {
+            if (!firstClickDone) {
+                // 第一次按：提示 + 開新分頁
+                alert("請按下訪客登入後回到此頁");
+                window.open("https://crm-shekinahch.org/", "_blank");
+
+                // 修改按鈕文字
+                btn.textContent = "到報名頁";
+
+                // 更新 flag
+                firstClickDone = true;
+            } else {
+                // 第二次按：直接跳到 TicketInfo 頁
+                window.location.href = "https://crm-shekinahch.org/Home/TicketInfo?ticketId=1861&eventId=3152&eventName=2026%E6%84%9B%E7%A5%9E%E7%89%B9%E6%9C%83(%E6%96%B0%E6%9C%8B%E5%8F%8B%E5%B0%88%E5%8D%80)";
+            }
+        });
+    </script>
+</body>
+</html>
