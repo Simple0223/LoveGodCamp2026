@@ -1,457 +1,192 @@
-import React, { useState, useEffect } from 'react';
-import { 
-  Target, 
-  Globe, 
-  HelpCircle, 
-  ChevronRight, 
-  Calendar, 
-  CheckCircle2, 
-  ArrowLeft,
-  Users,
-  Award,
-  Sparkles,
-  ShieldCheck,
-  GraduationCap,
-  ArrowRight,
-  Clock,
-  MapPin,
-  Plane,
-  FileText,
-  X // 新增 X 圖標用於關閉視窗
-} from 'lucide-react';
-
-// 定義品牌顏色
-const COLORS = {
-  purple: '[#594CE5]', // CMYK 65/70/10/0
-  yellow: '[#FFA640]', // CMYK 0/35/75/0
-  purpleLight: '[#594CE5]/10',
-  yellowLight: '[#FFA640]/10',
-};
-
-const App = () => {
-  const [activeTab, setActiveTab] = useState('home');
-  const [showApplyModal, setShowApplyModal] = useState(false); // 控制報名彈窗
-
-  // 切換時自動捲動到頂部
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [activeTab]);
-
-  const renderContent = () => {
-    switch (activeTab) {
-      case 'main':
-        return <MainProgram onBack={() => setActiveTab('home')} />;
-      case 'dream':
-        return <DreamProject onBack={() => setActiveTab('home')} />;
-      case 'qa':
-        return <QASection onBack={() => setActiveTab('home')} />;
-      default:
-        return <HomeScreen onSelect={setActiveTab} />;
-    }
-  };
-
-  return (
-    <div className="min-h-screen bg-slate-50 text-slate-800 font-sans selection:bg-[#594CE5] selection:text-white">
-      {/* Navbar */}
-      <nav className="bg-white/90 backdrop-blur-md shadow-sm sticky top-0 z-50 border-b border-slate-100">
-        <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-          <div className="flex items-center space-x-3 cursor-pointer group" onClick={() => setActiveTab('home')}>
-            <div className="bg-[#594CE5] p-2 rounded-xl text-white group-hover:rotate-12 transition-transform">
-              <Award size={24} />
-            </div>
-            <div className="flex flex-col">
-              <span className="font-black text-xl tracking-tight text-slate-900">青年獎學金生培育計畫</span>
-              <span className="text-[10px] uppercase tracking-[0.1em] text-[#594CE5] font-bold">Shekinah youth scholarship training program</span>
-            </div>
-          </div>
-          <div className="hidden md:flex items-center space-x-10 text-sm font-bold uppercase tracking-widest">
-            <button onClick={() => setActiveTab('main')} className={`${activeTab === 'main' ? 'text-[#594CE5]' : 'text-slate-400 hover:text-[#594CE5] transition-colors'}`}>主計劃</button>
-            <button onClick={() => setActiveTab('dream')} className={`${activeTab === 'dream' ? 'text-[#594CE5]' : 'text-slate-400 hover:text-[#594CE5] transition-colors'}`}>百億圓夢</button>
-            <button onClick={() => setActiveTab('qa')} className={`${activeTab === 'qa' ? 'text-[#594CE5]' : 'text-slate-400 hover:text-[#594CE5] transition-colors'}`}>Q&A</button>
-            <button 
-              onClick={() => setShowApplyModal(true)}
-              className="bg-[#594CE5] text-white px-6 py-2.5 rounded-full hover:bg-[#FFA640] hover:text-white transition-all shadow-lg shadow-purple-200"
-            >
-              立即報名
-            </button>
-          </div>
-        </div>
-      </nav>
-
-      {/* Main Content Area */}
-      <main className="max-w-7xl mx-auto px-6 py-12">
-        {renderContent()}
-      </main>
-
-      {/* Footer */}
-      <footer className="bg-white border-t border-slate-100 py-12 mt-20">
-        <div className="max-w-7xl mx-auto px-6 text-center">
-          <p className="text-slate-400 text-sm font-medium">© 2026 夏凱納職優計畫．培育未來職場領袖</p>
-        </div>
-      </footer>
-
-      {/* 報名資訊彈窗 */}
-      {showApplyModal && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-900/50 backdrop-blur-sm animate-in fade-in duration-200">
-          <div className="bg-white rounded-3xl p-8 max-w-md w-full shadow-2xl relative animate-in zoom-in-95 duration-200 border border-slate-100">
-            <button 
-              onClick={() => setShowApplyModal(false)}
-              className="absolute top-4 right-4 p-2 rounded-full hover:bg-slate-100 transition-colors text-slate-400 hover:text-slate-600"
-            >
-              <X size={20} />
-            </button>
-            <div className="flex flex-col items-center text-center space-y-4">
-              <div className="w-12 h-12 bg-[#594CE5]/10 text-[#594CE5] rounded-2xl flex items-center justify-center mb-2">
-                <FileText size={24} />
-              </div>
-              <h3 className="text-xl font-black text-slate-900">報名方式</h3>
-              <p className="text-slate-600 font-medium leading-relaxed text-lg">
-                請洽青年牧區政崴哥/葉能姐購買門訓簡章，並於 <span className="text-[#594CE5] font-bold">3/29(日)</span> 前將簡章繳交給林翰哥/紫盈姐。
-              </p>
-              <button 
-                onClick={() => setShowApplyModal(false)}
-                className="mt-4 w-full bg-[#594CE5] text-white font-bold py-3 rounded-xl hover:bg-[#483cc7] transition-colors shadow-lg shadow-purple-200"
-              >
-                了解
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-    </div>
-  );
-};
-
-const HomeScreen = ({ onSelect }) => (
-  <div className="animate-in fade-in slide-in-from-bottom-8 duration-1000">
-    {/* 標題區 */}
-    <div className="text-center mb-20">
-      <div className="inline-flex items-center space-x-2 bg-[#594CE5]/10 text-[#594CE5] px-5 py-2 rounded-full mb-8 border border-[#594CE5]/20">
-        <span className="text-xs font-black tracking-[0.2em] uppercase">Admission Open 2026</span>
-      </div>
-      <h1 className="text-6xl md:text-7xl font-black text-slate-900 mb-8 tracking-tighter">一年，讓潛力被看見</h1>
-      <p className="text-xl text-slate-500 max-w-3xl mx-auto leading-relaxed font-medium">
-        這不只是一份獎學金，更是一場關於生命的投資。<br/>我們透過全時間培訓，助你在真理的根基上，打造不可取代的職場競爭力。
-      </p>
-    </div>
-
-    {/* 左中右正方形卡片 */}
-    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-      <SquareCard 
-        icon={<Target className="w-14 h-14" />}
-        title="主計劃內容"
-        desc="職場職能訓練、導師陪伴與每月生活補貼，全心投入成長。"
-        color="purple"
-        onClick={() => onSelect('main')}
-      />
-      <SquareCard 
-        icon={<Globe className="w-14 h-14" />}
-        title="百億圓夢"
-        desc="邁向夏凱納全球分點進行 3 個月海外交流，實踐國度願景。"
-        color="yellow"
-        onClick={() => onSelect('dream')}
-      />
-      <SquareCard 
-        icon={<HelpCircle className="w-14 h-14" />}
-        title="常見問答"
-        desc="關於住宿、學籍、兼職限制與其他申請細節的完整解答。"
-        color="slate"
-        onClick={() => onSelect('qa')}
-      />
-    </div>
-  </div>
-);
-
-const SquareCard = ({ icon, title, desc, color, onClick }) => {
-  const themes = {
-    purple: "bg-[#594CE5] text-white shadow-purple-200 hover:bg-[#483cc7]",
-    // 黃色背景搭配深色文字以確保可讀性
-    yellow: "bg-[#FFA640] text-white shadow-orange-200 hover:bg-[#e8902e]", 
-    slate: "bg-slate-900 text-white shadow-slate-200 hover:bg-black"
-  };
-
-  const iconColors = {
-    purple: "text-purple-100",
-    yellow: "text-white/90",
-    slate: "text-slate-400"
-  };
-
-  return (
-    <button 
-      onClick={onClick}
-      className={`relative aspect-square w-full rounded-[3rem] p-10 flex flex-col items-center justify-center text-center transition-all duration-500 transform hover:-translate-y-4 shadow-2xl group ${themes[color]}`}
-    >
-      <div className={`mb-10 transition-transform duration-500 group-hover:scale-125 ${iconColors[color]}`}>
-        {icon}
-      </div>
-      
-      <div className="space-y-4">
-        <h3 className="text-3xl font-black tracking-tight">{title}</h3>
-        <p className="text-sm leading-relaxed px-4 opacity-70 font-medium">{desc}</p>
-      </div>
-
-      <div className="absolute bottom-10 flex items-center font-black text-xs tracking-[0.3em] uppercase opacity-0 group-hover:opacity-100 group-hover:translate-y-[-10px] transition-all">
-        Enter <ArrowRight size={14} className="ml-2" />
-      </div>
-    </button>
-  );
-};
-
-const MainProgram = ({ onBack }) => (
-  <div className="animate-in slide-in-from-right duration-700 max-w-5xl mx-auto">
-    <button onClick={onBack} className="flex items-center text-slate-400 hover:text-[#594CE5] mb-12 font-black text-sm tracking-widest transition-colors group">
-      <ArrowLeft size={18} className="mr-2 group-hover:-translate-x-2 transition-transform" /> BACK TO HOME
-    </button>
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>夏凱納青年獎學金生培育計畫</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
     
-    <div className="space-y-24">
-      {/* 核心價值 */}
-      <section>
-        <div className="mb-12">
-          <h2 className="text-4xl font-black text-slate-900 mb-4 tracking-tight">主計劃：職場與生命的鍛鍊</h2>
-          <div className="h-1.5 w-20 bg-[#594CE5] rounded-full"></div>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="bg-white p-10 rounded-[2.5rem] border border-slate-100 shadow-sm">
-            <h4 className="font-black text-xl mb-6 flex items-center text-[#594CE5]">
-              <Sparkles className="mr-2" size={20}/> 計畫亮點
-            </h4>
-            <ul className="space-y-4 font-medium text-slate-600">
-              <li className="flex items-start"><CheckCircle2 className="mr-3 text-[#594CE5] mt-1 shrink-0" size={18}/> 系統化訓練六大核心職能</li>
-              <li className="flex items-start"><CheckCircle2 className="mr-3 text-[#594CE5] mt-1 shrink-0" size={18}/> 全時間教會服事與專案管理實踐</li>
-              <li className="flex items-start"><CheckCircle2 className="mr-3 text-[#594CE5] mt-1 shrink-0" size={18}/> 提供生活獎助金，支持全心投入學習</li>
-              <li className="flex items-start"><CheckCircle2 className="mr-3 text-[#594CE5] mt-1 shrink-0" size={18}/> 專屬導師一對一職涯陪跑陪伴</li>
-            </ul>
-          </div>
-          <div className="bg-[#594CE5] text-white p-10 rounded-[2.5rem] shadow-xl shadow-purple-100">
-            <h4 className="font-black text-xl mb-6">神話語的根基</h4>
-            <p className="text-purple-50 italic leading-relaxed opacity-90">
-              「因為那已經立好的根基就是耶穌基督，此外沒有人能立別的根基...人在那根基上所建造的工程若存得住，他就要得賞賜。」
-              <span className="block mt-4 font-bold text-white">— 哥林多前書 3:11-14</span>
-            </p>
-          </div>
-        </div>
-      </section>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap');
+        body { font-family: 'Noto Sans TC', sans-serif; }
+        .bg-purple { background-color: #594CE5; }
+        .text-purple { color: #594CE5; }
+        .bg-yellow { background-color: #FFA640; }
+        .text-yellow { color: #FFA640; }
+    </style>
+</head>
+<body class="min-h-screen bg-slate-50 text-slate-800 selection:bg-[#594CE5] selection:text-white" 
+      x-data="{ activeTab: 'home', showApplyModal: false }">
 
-      {/* 申請時間線 */}
-      <section>
-        <div className="mb-12 text-center">
-          <h3 className="text-3xl font-black text-slate-900 mb-4">申請計畫時程</h3>
-          <p className="text-slate-500 font-medium">重要節點請務必留心</p>
+    <nav class="bg-white/90 backdrop-blur-md shadow-sm sticky top-0 z-50 border-b border-slate-100">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-3 cursor-pointer group" @click="activeTab = 'home'; window.scrollTo(0,0)">
+                <div class="bg-[#594CE5] p-2 rounded-xl text-white group-hover:rotate-12 transition-transform">
+                    <i data-lucide="award"></i>
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-black text-xl tracking-tight text-slate-900">青年獎學金生培育計畫</span>
+                    <span class="text-[10px] uppercase tracking-[0.1em] text-[#594CE5] font-bold">Shekinah youth scholarship training program</span>
+                </div>
+            </div>
+            <div class="hidden md:flex items-center space-x-10 text-sm font-bold uppercase tracking-widest">
+                <button @click="activeTab = 'main'; window.scrollTo(0,0)" :class="activeTab === 'main' ? 'text-purple' : 'text-slate-400 hover:text-purple transition-colors'">主計劃</button>
+                <button @click="activeTab = 'dream'; window.scrollTo(0,0)" :class="activeTab === 'dream' ? 'text-purple' : 'text-slate-400 hover:text-purple transition-colors'">百億圓夢</button>
+                <button @click="activeTab = 'qa'; window.scrollTo(0,0)" :class="activeTab === 'qa' ? 'text-purple' : 'text-slate-400 hover:text-purple transition-colors'">Q&A</button>
+                <button @click="showApplyModal = true" class="bg-[#594CE5] text-white px-6 py-2.5 rounded-full hover:bg-[#FFA640] transition-all shadow-lg shadow-purple-200">
+                    立即報名
+                </button>
+            </div>
         </div>
-        <div className="relative pt-12 pb-20">
-          <div className="absolute top-[68px] left-0 w-full h-1 bg-slate-200 rounded-full"></div>
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-4 relative z-10">
-            <TimelineStep date="2/7 - 3/29" title="報名階段" desc="線上提交申請資料" />
-            <TimelineStep 
-              date="4/11 (六)" 
-              title="筆試評估" 
-              desc="職場力與適性測驗" 
-              alert="4/11 需回覆百億圓夢參與意願"
-            />
-            <TimelineStep date="4/12 - 4/23" title="面試複審" desc="核心價值與心志確認" />
-            <TimelineStep date="4/25 (六)" title="錄取公告" desc="正式通知入學名單" />
-            <TimelineStep date="7/1" title="正式入學" desc="展開一年的培育計畫" highlight />
-          </div>
-        </div>
-      </section>
+    </nav>
 
-      {/* 報考資格 */}
-      <section className="bg-slate-900 text-white p-12 md:p-16 rounded-[4rem]">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
-          <div>
-            <h3 className="text-3xl font-black mb-4 flex items-center">
-              <ShieldCheck className="mr-3 text-[#594CE5]" size={32}/> 報考資格規範
-            </h3>
-            <p className="text-slate-400 font-medium">請對應您的目前身份確認申請細節</p>
-          </div>
-          <div className="bg-white/10 px-6 py-2 rounded-full border border-white/10 text-sm font-bold">
-            基本門檻：30歲以下、G2結業
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <IdentityCard 
-            type="一般生" 
-            desc="大學、專校畢業生" 
-            details={["2-3月完成報名", "4月完成考試面試", "7/1 正式入學"]}
-          />
-          <IdentityCard 
-            type="研究生" 
-            desc="應屆畢業之研究生" 
-            details={["2-3月完成報名", "4月完成考試面試", "9/1 正式入學"]}
-            color="purple"
-          />
-          <IdentityCard 
-            type="待役弟兄" 
-            desc="尚未履行兵役者" 
-            details={["先完成申請流程", "通過審核保留學籍", "役畢後正式入學"]}
-          />
-        </div>
-
-        <div className="mt-12 p-6 bg-white/5 rounded-3xl border border-white/5 text-sm text-slate-400 flex items-start">
-          <Clock className="mr-3 mt-1 shrink-0" size={16}/>
-          <p>備註：申請期間不可同時在學。男性申請者如為未役身分，須保留學籍待役畢後，再依照最近的年度入學點（7月或9月）開始執行計畫。</p>
-        </div>
-      </section>
-    </div>
-  </div>
-);
-
-const DreamProject = ({ onBack }) => (
-  <div className="animate-in slide-in-from-right duration-700 max-w-5xl mx-auto">
-    <button onClick={onBack} className="flex items-center text-slate-400 hover:text-[#FFA640] mb-12 font-black text-sm tracking-widest transition-colors group">
-      <ArrowLeft size={18} className="mr-2 group-hover:-translate-x-2 transition-transform" /> BACK TO HOME
-    </button>
-    
-    <div className="space-y-20">
-      {/* 計畫詳情 */}
-      <div className="bg-white rounded-[4rem] p-12 md:p-20 shadow-sm border border-slate-100 relative overflow-hidden">
-        {/* 背景裝飾球 */}
-        <div className="absolute top-0 right-0 w-80 h-80 bg-[#FFA640]/20 rounded-full -mr-40 -mt-40 opacity-50"></div>
+    <main class="max-w-7xl mx-auto px-6 py-12">
         
-        <div className="relative z-10 flex flex-col lg:flex-row gap-16 items-start">
-          <div className="flex-1">
-            <div className="flex items-center space-x-4 mb-8">
-              <div className="bg-[#FFA640] p-4 rounded-2xl text-white shadow-xl shadow-orange-100">
-                <Globe size={32} />
-              </div>
-              <h2 className="text-4xl font-black text-slate-900 tracking-tight">青年百億圓夢計畫</h2>
-            </div>
-            <p className="text-xl text-slate-500 font-medium leading-relaxed mb-10">
-              拓展國際鏈結交流，引領青年在國際舞台展現創造力。本計畫協助獎學金生在門訓期間前往「夏凱納全球分點」實踐宣教願景。
-            </p>
-            
-            <div className="grid grid-cols-2 gap-6">
-              <div className="bg-[#FFA640]/10 p-8 rounded-3xl border border-[#FFA640]/20">
-                <div className="text-[#FFA640] text-xs font-black uppercase tracking-widest mb-2">交流長度 Duration</div>
-                <div className="text-4xl font-black text-[#e8902e]">3 <span className="text-xl">Months</span></div>
-              </div>
-              <div className="bg-slate-50 p-8 rounded-3xl border border-slate-100">
-                <div className="text-slate-400 text-xs font-black uppercase tracking-widest mb-2">目的地 Location</div>
-                <div className="text-2xl font-black text-slate-800 flex items-center">
-                  <MapPin size={20} className="mr-2 text-[#FFA640]"/> 夏凱納全球分點
+        <div x-show="activeTab === 'home'" x-transition.duration.500ms>
+            <div class="text-center mb-20">
+                <div class="inline-flex items-center space-x-2 bg-[#594CE5]/10 text-[#594CE5] px-5 py-2 rounded-full mb-8 border border-[#594CE5]/20">
+                    <span class="text-xs font-black tracking-[0.2em] uppercase">Admission Open 2026</span>
                 </div>
-              </div>
+                <h1 class="text-6xl md:text-7xl font-black text-slate-900 mb-8 tracking-tighter">一年，讓潛力被看見</h1>
+                <p class="text-xl text-slate-500 max-w-3xl mx-auto leading-relaxed font-medium">
+                    這不只是一份獎學金，更是一場關於生命的投資。<br/>我們透過全時間培訓，助你在真理的根基上，打造不可取代的職場競爭力。
+                </p>
             </div>
-          </div>
 
-          <div className="w-full lg:w-80 space-y-4">
-            <h4 className="font-black text-sm tracking-widest text-slate-400 uppercase">教會協助項目</h4>
-            <div className="space-y-2">
-              <AssistItem text="圓夢計畫書撰寫指導" />
-              <AssistItem text="專屬導師陪跑陪伴" />
-              <AssistItem text="宣教任務內容規劃" />
-              <AssistItem text="政府計畫流程對接" />
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <button @click="activeTab = 'main'; window.scrollTo(0,0)" class="relative aspect-square w-full rounded-[3rem] p-10 flex flex-col items-center justify-center text-center transition-all duration-500 transform hover:-translate-y-4 shadow-2xl group bg-[#594CE5] text-white">
+                    <div class="mb-10 transition-transform duration-500 group-hover:scale-125 text-purple-100"><i data-lucide="target" class="w-14 h-14"></i></div>
+                    <div class="space-y-4">
+                        <h3 class="text-3xl font-black">主計劃內容</h3>
+                        <p class="text-sm opacity-70 font-medium">職場職能訓練、導師陪伴與每月生活補貼，全心投入成長。</p>
+                    </div>
+                </button>
+                <button @click="activeTab = 'dream'; window.scrollTo(0,0)" class="relative aspect-square w-full rounded-[3rem] p-10 flex flex-col items-center justify-center text-center transition-all duration-500 transform hover:-translate-y-4 shadow-2xl group bg-[#FFA640] text-white">
+                    <div class="mb-10 transition-transform duration-500 group-hover:scale-125"><i data-lucide="globe" class="w-14 h-14"></i></div>
+                    <div class="space-y-4">
+                        <h3 class="text-3xl font-black">百億圓夢</h3>
+                        <p class="text-sm opacity-70 font-medium">邁向夏凱納全球分點進行 3 個月海外交流，實踐國度願景。</p>
+                    </div>
+                </button>
+                <button @click="activeTab = 'qa'; window.scrollTo(0,0)" class="relative aspect-square w-full rounded-[3rem] p-10 flex flex-col items-center justify-center text-center transition-all duration-500 transform hover:-translate-y-4 shadow-2xl group bg-slate-900 text-white">
+                    <div class="mb-10 transition-transform duration-500 group-hover:scale-125 text-slate-400"><i data-lucide="help-circle" class="w-14 h-14"></i></div>
+                    <div class="space-y-4">
+                        <h3 class="text-3xl font-black">常見問答</h3>
+                        <p class="text-sm opacity-70 font-medium">關於住宿、學籍、兼職限制與其他申請細節的完整解答。</p>
+                    </div>
+                </button>
             </div>
-          </div>
         </div>
-      </div>
 
-      {/* 圓夢計畫時程 - 背景改為紫色，文字改為黃色/白色 */}
-      <section className="bg-[#594CE5] text-white p-12 md:p-20 rounded-[4rem]">
-        <div className="text-center mb-16">
-          <h3 className="text-3xl font-black mb-4">百億圓夢計畫時程</h3>
-          <p className="text-purple-200 font-medium">從計畫書預備到正式出發</p>
+        <div x-show="activeTab === 'main'" x-transition.duration.500ms>
+            <button @click="activeTab = 'home'" class="flex items-center text-slate-400 hover:text-purple mb-12 font-black text-sm tracking-widest transition-colors group">
+                <i data-lucide="arrow-left" class="mr-2 group-hover:-translate-x-2 transition-transform"></i> BACK TO HOME
+            </button>
+            <div class="space-y-24 max-w-5xl mx-auto">
+                <section>
+                    <div class="mb-12">
+                        <h2 class="text-4xl font-black text-slate-900 mb-4">主計劃：職場與生命的鍛鍊</h2>
+                        <div class="h-1.5 w-20 bg-[#594CE5] rounded-full"></div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div class="bg-white p-10 rounded-[2.5rem] border border-slate-100 shadow-sm">
+                            <h4 class="font-black text-xl mb-6 flex items-center text-purple"><i data-lucide="sparkles" class="mr-2"></i> 計畫亮點</h4>
+                            <ul class="space-y-4 font-medium text-slate-600">
+                                <li class="flex items-start"><i data-lucide="check-circle-2" class="mr-3 text-purple mt-1 shrink-0 w-5"></i> 系統化訓練六大核心職能</li>
+                                <li class="flex items-start"><i data-lucide="check-circle-2" class="mr-3 text-purple mt-1 shrink-0 w-5"></i> 全時間教會服事與專案管理實踐</li>
+                                <li class="flex items-start"><i data-lucide="check-circle-2" class="mr-3 text-purple mt-1 shrink-0 w-5"></i> 提供生活獎助金</li>
+                                <li class="flex items-start"><i data-lucide="check-circle-2" class="mr-3 text-purple mt-1 shrink-0 w-5"></i> 專屬導師一對一陪跑</li>
+                            </ul>
+                        </div>
+                        <div class="bg-purple text-white p-10 rounded-[2.5rem] shadow-xl shadow-purple-100">
+                            <h4 class="font-black text-xl mb-6">神話語的根基</h4>
+                            <p class="italic leading-relaxed opacity-90">「因為那已經立好的根基就是耶穌基督，此外沒有人能立別的根基...」<br><span class="block mt-4 font-bold">— 哥林多前書 3:11-14</span></p>
+                        </div>
+                    </div>
+                </section>
+            </div>
         </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 relative">
-          <div className="hidden md:block absolute top-[44px] left-[15%] w-[70%] h-0.5 bg-white/20"></div>
-          <DreamTimeStep month="4月" title="意願確認" desc="啟動計畫書輔導與方向討論" />
-          <DreamTimeStep month="6月" title="申請截止" desc="完成圓夢計畫書送件流程" />
-          <DreamTimeStep month="9月/11月" title="結果通知" desc="計畫審核結果公告與二次修正" />
-          <DreamTimeStep month="隔年3月" title="正式出發" desc="前往夏凱納分點開展交流" active />
-        </div>
-      </section>
-    </div>
-  </div>
-);
 
-const QASection = ({ onBack }) => {
-  const [openIdx, setOpenIdx] = useState(0);
-  const faqs = [
-    { q: "門訓生是否需自行負擔費用？", a: "獎學金生無額外報名費，教會將提供獎學金及補助。但參與本教會門訓課程之註冊費與課程費用（如教材費）需另行支付。" },
-    { q: "計畫期間是否提供住宿？", a: "若服事地點交通不便，可申請靈糧學舍住宿（相關費用由獎學勵金中扣除）。" },
-    { q: "培育期間可以繼續學業或工作嗎？", a: "本計畫為全時間培育。為了確保學習與服事成效，申請期間不得同時在學（包含研究生）或兼職工作。" },
-    { q: "如果不適應計畫內容怎麼辦？", a: "教會將提供專業協談與關淵。若仍無法與計畫目標規範達成一致，將視情況調整或終止參與資格。" }
-  ];
-
-  return (
-    <div className="animate-in slide-in-from-right duration-700 max-w-4xl mx-auto">
-      <button onClick={onBack} className="flex items-center text-slate-400 hover:text-slate-900 mb-12 font-black text-sm tracking-widest transition-colors group">
-        <ArrowLeft size={18} className="mr-2 group-hover:-translate-x-2 transition-transform" /> BACK TO HOME
-      </button>
-      
-      <div className="bg-white rounded-[4rem] p-12 md:p-16 border border-slate-100 shadow-sm">
-        <h2 className="text-4xl font-black mb-12 text-center text-slate-900 tracking-tight">常見問題 FAQ</h2>
-        <div className="space-y-4">
-          {faqs.map((faq, idx) => (
-            <div key={idx} className={`rounded-3xl transition-all border-2 ${openIdx === idx ? 'border-slate-900 bg-slate-900 text-white' : 'border-slate-50 bg-slate-50'}`}>
-              <button onClick={() => setOpenIdx(openIdx === idx ? -1 : idx)} className="w-full text-left p-8 flex justify-between items-center group">
-                <span className="font-bold text-lg">{faq.q}</span>
-                <div className={`w-10 h-10 rounded-full flex items-center justify-center transition-all ${openIdx === idx ? 'bg-white text-slate-900 rotate-180' : 'bg-white text-slate-400 group-hover:bg-slate-900 group-hover:text-white'}`}>
-                  <ChevronRight size={20} className="rotate-90" />
+        <div x-show="activeTab === 'dream'" x-transition.duration.500ms>
+            <button @click="activeTab = 'home'" class="flex items-center text-slate-400 hover:text-yellow mb-12 font-black text-sm tracking-widest transition-colors group">
+                <i data-lucide="arrow-left" class="mr-2 group-hover:-translate-x-2 transition-transform"></i> BACK TO HOME
+            </button>
+            <div class="bg-white rounded-[4rem] p-12 md:p-20 shadow-sm border border-slate-100 relative overflow-hidden">
+                <div class="relative z-10 flex flex-col lg:flex-row gap-16 items-start">
+                    <div class="flex-1">
+                        <div class="flex items-center space-x-4 mb-8">
+                            <div class="bg-[#FFA640] p-4 rounded-2xl text-white shadow-xl shadow-orange-100"><i data-lucide="globe" class="w-8 h-8"></i></div>
+                            <h2 class="text-4xl font-black text-slate-900">青年百億圓夢計畫</h2>
+                        </div>
+                        <p class="text-xl text-slate-500 font-medium leading-relaxed mb-10">拓展國際鏈結交流，引領青年在國際舞台展現創造力。協助在門訓期間前往「夏凱納全球分點」實踐宣教願景。</p>
+                        <div class="grid grid-cols-2 gap-6">
+                            <div class="bg-[#FFA640]/10 p-8 rounded-3xl border border-[#FFA640]/20 text-[#e8902e]">
+                                <div class="text-xs font-black uppercase mb-2">交流長度 Duration</div>
+                                <div class="text-4xl font-black">3 <span class="text-xl">Months</span></div>
+                            </div>
+                            <div class="bg-slate-50 p-8 rounded-3xl border border-slate-100">
+                                <div class="text-slate-400 text-xs font-black mb-2">目的地 Location</div>
+                                <div class="text-2xl font-black text-slate-800">夏凱納全球分點</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </button>
-              {openIdx === idx && (
-                <div className="p-8 pt-0 leading-relaxed text-lg opacity-80 animate-in fade-in slide-in-from-top-2">
-                  {faq.a}
-                </div>
-              )}
             </div>
-          ))}
         </div>
-      </div>
-    </div>
-  );
-};
 
-// 小組件
-const TimelineStep = ({ date, title, desc, highlight = false, alert }) => (
-  <div className="flex flex-col items-center text-center">
-    <div className={`w-10 h-10 rounded-full border-4 mb-6 z-10 transition-transform hover:scale-125 duration-300 ${highlight ? 'bg-[#594CE5] border-white ring-4 ring-[#594CE5]/20 shadow-xl' : 'bg-white border-[#594CE5]'}`}></div>
-    <div className={`text-sm font-black mb-1 ${highlight ? 'text-[#594CE5]' : 'text-slate-400'}`}>{date}</div>
-    <div className="font-black text-lg text-slate-900 mb-2">{title}</div>
-    <div className="text-xs text-slate-500 px-2 font-medium leading-relaxed">{desc}</div>
-    {alert && (
-      <div className="mt-3 text-[10px] font-black text-red-500 bg-red-50 px-2 py-1 rounded-lg border border-red-100">
-        {alert}
-      </div>
-    )}
-  </div>
-);
-
-const IdentityCard = ({ type, desc, details, color = "slate" }) => (
-  <div className={`p-10 rounded-[2.5rem] border ${color === 'purple' ? 'bg-[#594CE5] border-transparent shadow-2xl shadow-purple-900' : 'bg-white/5 border-white/10 hover:bg-white/10 transition-colors'}`}>
-    <h4 className="text-2xl font-black mb-2">{type}</h4>
-    <p className="text-sm opacity-60 mb-8 font-medium">{desc}</p>
-    <div className="space-y-4">
-      {details.map((text, i) => (
-        <div key={i} className="flex items-center text-sm font-bold">
-          <div className={`w-1.5 h-1.5 rounded-full mr-3 ${color === 'purple' ? 'bg-white' : 'bg-[#594CE5]'}`}></div>
-          {text}
+        <div x-show="activeTab === 'qa'" x-transition.duration.500ms x-data="{ openIdx: 0 }">
+            <button @click="activeTab = 'home'" class="flex items-center text-slate-400 hover:text-slate-900 mb-12 font-black text-sm tracking-widest transition-colors group">
+                <i data-lucide="arrow-left" class="mr-2 group-hover:-translate-x-2 transition-transform"></i> BACK TO HOME
+            </button>
+            <div class="bg-white rounded-[4rem] p-12 md:p-16 border border-slate-100 shadow-sm max-w-4xl mx-auto">
+                <h2 class="text-4xl font-black mb-12 text-center text-slate-900">常見問題 FAQ</h2>
+                <div class="space-y-4">
+                    <template x-for="(item, idx) in [
+                        {q: '門訓生是否需自行負擔費用？', a: '獎學金生無額外報名費，但門訓課程之註冊費與教材費需另行支付。'},
+                        {q: '計畫期間是否提供住宿？', a: '若服事地點交通不便，可申請靈糧學舍住宿（由獎助金中扣除）。'},
+                        {q: '培育期間可以繼續學業或工作嗎？', a: '本計畫為全時間培育。申請期間不得同時在學或兼職。'}
+                    ]">
+                        <div class="rounded-3xl transition-all border-2" :class="openIdx === idx ? 'border-slate-900 bg-slate-900 text-white' : 'border-slate-50 bg-slate-50'">
+                            <button @click="openIdx = (openIdx === idx ? -1 : idx)" class="w-full text-left p-8 flex justify-between items-center group">
+                                <span class="font-bold text-lg" x-text="item.q"></span>
+                                <i data-lucide="chevron-down" class="transition-transform" :class="openIdx === idx ? 'rotate-180' : ''"></i>
+                            </button>
+                            <div x-show="openIdx === idx" x-collapse class="p-8 pt-0 leading-relaxed text-lg opacity-80" x-text="item.a"></div>
+                        </div>
+                    </template>
+                </div>
+            </div>
         </div>
-      ))}
-    </div>
-  </div>
-);
 
-const DreamTimeStep = ({ month, title, desc, active = false }) => (
-  <div className="flex flex-col items-center text-center group">
-    <div className={`w-20 h-20 rounded-3xl mb-8 flex items-center justify-center font-black text-xl transition-all duration-500 group-hover:rotate-12 ${active ? 'bg-[#FFA640] text-white shadow-xl' : 'bg-white/10 border border-white/20 text-white/60'}`}>
-      {month}
-    </div>
-    <div className="space-y-2">
-      <div className="font-black text-xl">{title}</div>
-      <div className="text-sm opacity-60 leading-relaxed font-medium px-4">{desc}</div>
-    </div>
-  </div>
-);
+    </main>
 
-const AssistItem = ({ text }) => (
-  <div className="flex items-center p-4 bg-slate-50 rounded-2xl border border-slate-100 font-bold text-slate-700 hover:bg-white hover:border-[#FFA640] transition-all cursor-default">
-    <div className="w-2 h-2 rounded-full bg-[#FFA640] mr-4"></div>
-    {text}
-  </div>
-);
+    <footer class="bg-white border-t border-slate-100 py-12 mt-20">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <p class="text-slate-400 text-sm font-medium">© 2026 夏凱納職優計畫．培育未來職場領袖</p>
+        </div>
+    </footer>
 
-export default App;
+    <div x-show="showApplyModal" 
+         class="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-900/50 backdrop-blur-sm"
+         x-transition.opacity>
+        <div class="bg-white rounded-3xl p-8 max-w-md w-full shadow-2xl relative border border-slate-100" @click.away="showApplyModal = false">
+            <button @click="showApplyModal = false" class="absolute top-4 right-4 p-2 rounded-full hover:bg-slate-100 text-slate-400"><i data-lucide="x" class="w-5 h-5"></i></button>
+            <div class="flex flex-col items-center text-center space-y-4">
+                <div class="w-12 h-12 bg-purple/10 text-purple rounded-2xl flex items-center justify-center mb-2"><i data-lucide="file-text"></i></div>
+                <h3 class="text-xl font-black text-slate-900">報名方式</h3>
+                <p class="text-slate-600 font-medium leading-relaxed">
+                    請洽青年牧區政崴哥/葉能姐購買門訓簡章，並於 <span class="text-purple font-bold">3/29(日)</span> 前將簡章繳交給林翰哥/紫盈姐。
+                </p>
+                <button @click="showApplyModal = false" class="mt-4 w-full bg-purple text-white font-bold py-3 rounded-xl hover:bg-opacity-90 transition-colors">了解</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 初始化 Lucide 圖標
+        lucide.createIcons();
+    </script>
+</body>
+</html>
