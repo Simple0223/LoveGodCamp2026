@@ -396,27 +396,7 @@ const App = () => {
     return (
         <div className="min-h-screen bg-slate-50 font-sans text-slate-900 selection:bg-indigo-100">
 
-            {/* 🟢 開發者測試工具列 (僅用於預覽環境測試) */}
-            <div className="fixed bottom-4 left-1/2 -translate-x-1/2 bg-white/90 backdrop-blur-md border-2 border-indigo-100 shadow-2xl px-2 py-2 rounded-3xl flex items-center gap-1 z-[100] scale-90 sm:scale-100">
-                <button
-                    onClick={() => setView('vote')}
-                    className={`flex items-center gap-2 px-4 py-2 rounded-2xl transition-all font-bold text-sm ${view === 'vote' ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-200' : 'text-slate-500 hover:bg-slate-100'}`}
-                >
-                    <Send size={16} /> 投票
-                </button>
-                <button
-                    onClick={() => setView('screen')}
-                    className={`flex items-center gap-2 px-4 py-2 rounded-2xl transition-all font-bold text-sm ${view === 'screen' ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-200' : 'text-slate-500 hover:bg-slate-100'}`}
-                >
-                    <BarChart3 size={16} /> 大螢幕
-                </button>
-                <button
-                    onClick={() => setView('admin')}
-                    className={`flex items-center gap-2 px-4 py-2 rounded-2xl transition-all font-bold text-sm ${view === 'admin' ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-200' : 'text-slate-500 hover:bg-slate-100'}`}
-                >
-                    <Settings size={16} /> 管理
-                </button>
-            </div>
+            {/* 🟢 工具列已移除，現在只能透過網址參數切換（例如 ?view=admin） */}
 
             <main className="min-h-screen">
                 {view === 'vote' && <VoterView pollData={pollData} hasVoted={hasVoted} onVote={handleVote} />}
