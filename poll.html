@@ -19,6 +19,7 @@
             text-shadow: 2px 2px 0px #000000;
             letter-spacing: 2px;
         }
+
         /* 讓 React 載入前的 Loading 畫面也美美的 */
         #root:empty::before {
             content: "LOADING REBORN POLL...";
@@ -46,11 +47,8 @@
 </head>
 <body class="text-white min-h-screen">
 
-    <nav class="p-4 border-b border-gray-800 flex justify-between items-center bg-gray-900/50">
+    <nav class="p-4 border-b border-gray-800 flex justify-center items-center bg-gray-900/50">
         <div class="reborn-text-mini">REBORN</div>
-        <a href="index.html" class="text-sm bg-gray-800 hover:bg-gray-700 px-4 py-2 rounded-full border border-red-900 transition">
-            ← 回報名頁
-        </a>
     </nav>
 
     <div id="root"></div>
